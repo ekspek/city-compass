@@ -1,4 +1,6 @@
-function direction(p1in, p2in)
+local compass = {}
+
+compass.direction = function(p1in, p2in)
 	-- Import two coordinates as tables
 	p1.lat = p1[1]
 	p1.lon = p1[2]
@@ -19,21 +21,20 @@ function direction(p1in, p2in)
 	--return raddist * 6378000
 end
 
-function dms2deg(d, m, s)
+compass.dms2deg = function(d, m, s)
 	local deg = d + (m / 60) + (s / 3600)
 	return deg
 end
 
-function deg2rad(deg)
+compass.deg2rad = function(deg)
 	local rad = deg * math.pi / 180
 	return rad
 end
 
-function rad2deg(rad)
+compass.rad2deg = function(rad)
 	local deg = rad * 180 / math.pi
 	return rad
 end
 
-p1 = { deg2rad(dms2deg(40, 45, 0)), deg2rad(dms2deg(-73, -58, 0)) }
-p2 = { deg2rad(dms2deg(51, 32, 0)), deg2rad(dms2deg(0, -10, 0)) }
-print(direction(p1, p2))
+return compass
+
