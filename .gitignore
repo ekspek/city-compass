@@ -1,3 +1,7 @@
+### This project ###
+# Surpress pdf output for now
+*.pdf
+
 ### Lua ###
 # Compiled Lua sources
 luac.out

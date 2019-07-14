@@ -2,10 +2,12 @@ local compass = {}
 
 compass.direction = function(p1in, p2in)
 	-- Import two coordinates as tables
-	p1.lat = p1[1]
-	p1.lon = p1[2]
-	p2.lat = p2[1]
-	p2.lon = p2[2]
+	local p1 = {}
+	local p2 = {}
+	p1.lat = p1in[1]
+	p1.lon = p1in[2]
+	p2.lat = p2in[1]
+	p2.lon = p2in[2]
 
 	-- Radial distance between the two points
 	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))

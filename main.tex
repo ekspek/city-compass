@@ -1,0 +1,17 @@
+% arara: lualatex
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{luacode}
+\usepackage{tikz}
+
+\luadirect{test = require 'test'}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\node at (0,0) {\luadirect{test.print()}};
+\end{tikzpicture}
+
+\end{document}
