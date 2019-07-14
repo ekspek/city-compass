@@ -1,17 +1,24 @@
 % arara: lualatex
 \documentclass{article}
 
+\usepackage{luacode}
+
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{luacode}
+\usepackage{xcolor}
+\usepackage{gensymb}
 \usepackage{tikz}
 
 \luadirect{test = require 'test'}
 
 \begin{document}
 
-\begin{tikzpicture}
-	\node at (0,0) {\luadirect{test.print()}};
-\end{tikzpicture}
+\luadirect{test.debug()}
+
+\begin{center}
+	\begin{tikzpicture}
+		\node at (0,0) [circle, draw] {Test Node};
+	\end{tikzpicture}
+\end{center}
 
 \end{document}

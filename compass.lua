@@ -35,7 +35,7 @@ end
 
 compass.rad2deg = function(rad)
 	local deg = rad * 180 / math.pi
-	return rad
+	return deg
 end
 
 return compass
