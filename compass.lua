@@ -1,13 +1,17 @@
 local compass = {}
 
-compass.direction = function(p1in, p2in)
-	-- Import two coordinates as tables
+compass.heading = function(p1in, p2in)
+	-- Import two coordinates
 	local p1 = {}
 	local p2 = {}
-	p1.lat = p1in[1]
-	p1.lon = p1in[2]
-	p2.lat = p2in[1]
-	p2.lon = p2in[2]
+	p1.lat = p1in.latitude
+	p1.lon = p1in.longitude
+	p2.lat = p2in.latitude
+	p2.lon = p2in.longitude
+
+	if not p1.lat or not p1.lon or not p2.lat or not p2.lon then
+		tex.print("Error")
+	end
 
 	-- Radial distance between the two points
 	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))
@@ -21,6 +25,24 @@ compass.direction = function(p1in, p2in)
 	return heading1
 	--return heading2
 	--return raddist * 6378000
+end
+
+compass.distance = function(p1in, p2in)
+	-- Import two coordinates
+	local p1 = {}
+	local p2 = {}
+	p1.lat = p1in.latitude
+	p1.lon = p1in.longitude
+	p2.lat = p2in.latitude
+	p2.lon = p2in.longitude
+
+	-- Spherical Earth radius
+	local earthradius = 6378000
+
+	-- Radial distance between the two points
+	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))
+
+	return raddist * earthradius
 end
 
 compass.dms2deg = function(d, m, s)
