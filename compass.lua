@@ -1,5 +1,20 @@
 local compass = {}
 
+compass.dms2deg = function(d, m, s)
+	local deg = d + (m / 60) + (s / 3600)
+	return deg
+end
+
+compass.deg2rad = function(deg)
+	local rad = deg * math.pi / 180
+	return rad
+end
+
+compass.rad2deg = function(rad)
+	local deg = rad * 180 / math.pi
+	return deg
+end
+
 compass.heading = function(p1in, p2in)
 	-- Import two coordinates
 	local p1 = {}
@@ -8,10 +23,6 @@ compass.heading = function(p1in, p2in)
 	p1.lon = p1in.longitude
 	p2.lat = p2in.latitude
 	p2.lon = p2in.longitude
-
-	if not p1.lat or not p1.lon or not p2.lat or not p2.lon then
-		tex.print("Error")
-	end
 
 	-- Radial distance between the two points
 	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))
@@ -43,21 +54,6 @@ compass.distance = function(p1in, p2in)
 	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))
 
 	return raddist * earthradius
-end
-
-compass.dms2deg = function(d, m, s)
-	local deg = d + (m / 60) + (s / 3600)
-	return deg
-end
-
-compass.deg2rad = function(deg)
-	local rad = deg * math.pi / 180
-	return rad
-end
-
-compass.rad2deg = function(rad)
-	local deg = rad * 180 / math.pi
-	return deg
 end
 
 return compass
