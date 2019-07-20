@@ -3,7 +3,8 @@ local parse = require 'parse'
 
 local main = {}
 
-main.coordlist = parse.file('locations.csv')
+--main.coordlist = parse.file('locations.csv')
+main.coordlist = parse.openflights({ 8899, 8896, 9350, 502, home = 9715 })
 main.coordlist = parse.deg2rad(main.coordlist)
 main.coordlist = parse.addheaddist(main.coordlist)
 
