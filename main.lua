@@ -3,14 +3,8 @@ local parse = require 'parse'
 
 local main = {}
 
-main.coordlist = {
-	home = { name = 'Home', latitude = 38.7138, longitude = -9.139 },
-	{ name = 'Lisbon', latitude = 38.7138, longitude = -9.139 },
-	{ name = 'Utrecht', latitude = 52.089167, longitude = 5.109722 },
-	{ name = 'New York', latitude = 40.752726, longitude = -73.977229 },
-}
+main.coordlist = parse.file('locations.csv')
 main.coordlist = parse.deg2rad(main.coordlist)
-
 main.coordlist = parse.addheaddist(main.coordlist)
 
 main.tableprint = function()

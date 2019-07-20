@@ -25,9 +25,9 @@ parse.deg2rad = function(coordlist)
 end
 
 parse.file = function(filename)
-	local coordlist = {}
-
 	local file = csv.open(filename)
+
+	local coordlist = {}
 
 	for fields in file:lines() do
 		local coord = {}
@@ -36,12 +36,13 @@ parse.file = function(filename)
 			if j == 7 then coord.latitude = v end
 			if j == 8 then coord.longitude = v end
 		end
-		table.insert(coordlist, coord)
-	end
 
-	for _, u in ipairs(coordlist) do
-		for i, v in pairs(u) do
-			print(i, v)
+		if not coordlist.home then
+			if coord.name and coord.latitude and coord.longitude then
+				coordlist.home = coord
+			end
+		else
+			table.insert(coordlist, coord)
 		end
 	end
 
