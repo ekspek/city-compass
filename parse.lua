@@ -49,5 +49,45 @@ parse.file = function(filename)
 	return coordlist
 end
 
+parse.openflights = function(linelist)
+	local file = csv.open('./openflights/data/airports-extended.dat')
+	if not linelist then
+		linelist = { 1 }
+	elseif not linelist.home then
+		linelist.home = { 1 }
+	end
+
+	local coordlist = {}
+
+	for fields in file:lines() do
+		coord = {}
+		for i, v in ipairs(linelist) do
+			if tonumber(fields[1]) == v then
+				coord.name		= fields[3]
+				coord.latitude	= tonumber(fields[7])
+				coord.longitude	= tonumber(fields[8])
+			end
+		end
+
+		if tonumber(fields[1]) == linelist.home then
+			if coord.name and coord.latitude and coord.longitude then
+				coordlist.home = coord
+			end
+		else
+			table.insert(coordlist, coord)
+		end
+	end
+
+	--[[
+	for _, u in ipairs(coordlist) do
+		for i, v in pairs(u) do
+			print(i, v)
+		end
+	end
+	--]]
+
+	return coordlist
+end
+
 return parse
 
