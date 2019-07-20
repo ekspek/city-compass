@@ -31,11 +31,9 @@ parse.file = function(filename)
 
 	for fields in file:lines() do
 		local coord = {}
-		for j, v in ipairs(fields) do
-			if j == 3 then coord.name = v end
-			if j == 7 then coord.latitude = v end
-			if j == 8 then coord.longitude = v end
-		end
+		coord.name		= fields[3]
+		coord.latitude	= tonumber(fields[7])
+		coord.longitude	= tonumber(fields[8])
 
 		if not coordlist.home then
 			if coord.name and coord.latitude and coord.longitude then
@@ -77,14 +75,6 @@ parse.openflights = function(linelist)
 			table.insert(coordlist, coord)
 		end
 	end
-
-	--[[
-	for _, u in ipairs(coordlist) do
-		for i, v in pairs(u) do
-			print(i, v)
-		end
-	end
-	--]]
 
 	return coordlist
 end
