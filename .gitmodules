@@ -1,3 +1,6 @@
 [submodule "openflights"]
 	path = openflights
 	url = https://github.com/jpatokal/openflights
+[submodule "lua-csv"]
+	path = lua-csv
+	url = https://github.com/geoffleyland/lua-csv
