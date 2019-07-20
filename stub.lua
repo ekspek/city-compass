@@ -1,7 +1,7 @@
 local parse = require 'parse'
 
 --coordlist = parse.file('locations.csv')
-coordlist = parse.openflights({ 8899, 8896, 9350, 502, home = 9715 })
+coordlist = parse.openflights({ 8899, 8896, 9350, 502 })
 
 ---[[
 for _, u in ipairs(coordlist) do
