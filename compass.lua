@@ -28,10 +28,10 @@ compass.heading = function(p1in, p2in)
 	local raddist = math.acos(math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) + math.sin(p2.lat) * math.sin(p1.lat))
 
 	-- Heading at departure (relative to north)
-	local heading1 = math.atan((-math.cos(p2.lat) * math.sin(p1.lon - p2.lon)) / (-math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.sin(p1.lat) + math.sin(p2.lat) * math.cos(p1.lat)))
+	local heading1 = math.atan2(-math.cos(p2.lat) * math.sin(p1.lon - p2.lon), -math.cos(p2.lat) * math.cos(p1.lon - p2.lon) * math.sin(p1.lat) + math.sin(p2.lat) * math.cos(p1.lat))
 
 	-- Heading at arrival (relative to north)
-	local heading2 = math.atan((-math.cos(p1.lat) * math.sin(p1.lon - p2.lon)) / (math.sin(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) - math.cos(p2.lat) * math.sin(p1.lat)))
+	local heading2 = math.atan2(-math.cos(p1.lat) * math.sin(p1.lon - p2.lon), math.sin(p2.lat) * math.cos(p1.lon - p2.lon) * math.cos(p1.lat) - math.cos(p2.lat) * math.sin(p1.lat))
 
 	return heading1
 	--return heading2
